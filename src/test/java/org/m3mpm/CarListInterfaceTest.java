@@ -11,6 +11,8 @@ class CarListInterfaceTest {
 
     @BeforeEach
     void setUp() {
+        carListInterface = new CarArrayList();
+
         for (int i = 0; i < 10; i++) {
             carListInterface.add(new Car("brand" + i, i));
         }
@@ -44,15 +46,15 @@ class CarListInterfaceTest {
     }
 
     @Test
-    void removeByIndexTrue(){
+    void removeByCorrectIndexThenTrue(){
         assertTrue(carListInterface.remove(2));
         assertEquals(9, carListInterface.size());
     }
 
     @Test
-    void removeByIndexFalse(){
+    void removeByIncorrectIndexThenThrowException(){
         assertEquals(10, carListInterface.size());
-        assertFalse(carListInterface.remove(20));
+        assertThrows(IndexOutOfBoundsException.class, () -> carListInterface.remove(20));
     }
 
     @Test
