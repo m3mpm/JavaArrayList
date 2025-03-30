@@ -19,14 +19,51 @@ class CarListInterfaceTest {
     }
 
     @Test
-    void get(){
+    void getElementByCorrectIndex(){
         Car car = carListInterface.get(0);
         assertEquals("brand0", car.getBrand());
     }
 
     @Test
-    void add(){
+    void getElementByIncorrectIndexThenThrowException(){
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            carListInterface.get(20);
+        });
+    }
+
+    @Test
+    void addElement(){
         assertEquals(10, carListInterface.size());
+    }
+
+    @Test
+    void addElementWithCorrectIndexIntoMiddle(){
+        Car car = new Car("LocalBrand", 100);
+        carListInterface.add(car,5);
+        Car carFromArray = carListInterface.get(5);
+        assertEquals("LocalBrand", carFromArray.getBrand());
+    }
+
+    @Test
+    void addElementWithIncorrectIndexThenThrowException(){
+        Car car = new Car("LocalBrand", 100);
+        assertThrows(IndexOutOfBoundsException.class, () -> carListInterface.add(car,20));
+    }
+
+    @Test
+    void addElementIntoFirstPosition(){
+        Car car = new Car("LocalBrand", 100);
+        carListInterface.addFirst(car);
+        Car carFromArray = carListInterface.get(0);
+        assertEquals("LocalBrand", carFromArray.getBrand());
+    }
+
+    @Test
+    void addElementIntoLastPosition(){
+        Car car = new Car("LocalBrand", 100);
+        carListInterface.addLast(car);
+        Car carFromArray = carListInterface.get(9);
+        assertEquals("LocalBrand", carFromArray.getBrand());
     }
 
     @Test
@@ -46,7 +83,7 @@ class CarListInterfaceTest {
     }
 
     @Test
-    void removeByCorrectIndexThenTrue(){
+    void removeByCorrectIndex(){
         assertTrue(carListInterface.remove(2));
         assertEquals(9, carListInterface.size());
     }
@@ -61,13 +98,6 @@ class CarListInterfaceTest {
     void removeAll(){
         carListInterface.clear();
         assertEquals(0, carListInterface.size());
-    }
-
-    @Test
-    void whenIndexOutOfBoundsThenThrowException(){
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            carListInterface.get(20);
-        });
     }
 
 }

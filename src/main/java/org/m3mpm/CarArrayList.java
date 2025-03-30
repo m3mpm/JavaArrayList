@@ -13,6 +13,12 @@ public class CarArrayList implements CarListInterface {
         }
     }
 
+    private void increasArray() {
+        if (size == array.length) {
+            array = Arrays.copyOf(array, array.length * 2);
+        }
+    }
+
     @Override
     public Car get(int index) {
         checkIndex(index);
@@ -21,11 +27,30 @@ public class CarArrayList implements CarListInterface {
 
     @Override
     public void add(Car car) {
-        if (size >= array.length) {
-            array = Arrays.copyOf(array, array.length * 2);
-        }
+        increasArray();
         array[size] = car;
         size += 1;
+    }
+
+    @Override
+    public void add(Car car, int index) {
+        checkIndex(index);
+        increasArray();
+        for (int i = size; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+        array[index] = car;
+        size += 1;
+    }
+
+    @Override
+    public void addFirst(Car car) {
+        add(car, 0);
+    }
+
+    @Override
+    public void addLast(Car car) {
+        add(car, size - 1);
     }
 
     @Override
