@@ -61,9 +61,11 @@ class CarListInterfaceTest {
         assertEquals(0, carListInterface.size());
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     void whenIndexOutOfBoundsThenThrowException(){
-        carListInterface.get(20);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            carListInterface.get(20);
+        });
     }
 
 }
