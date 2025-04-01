@@ -14,7 +14,7 @@ class CarListInterfaceTest {
         carListInterface = new CarArrayList();
 
         for (int i = 0; i < 10; i++) {
-            carListInterface.add(new Car("brand" + i, i));
+            carListInterface.add(new Car("brand" + i, 2023));
         }
     }
 
@@ -38,7 +38,7 @@ class CarListInterfaceTest {
 
     @Test
     void addElementWithCorrectIndexIntoMiddle(){
-        Car car = new Car("LocalBrand", 100);
+        Car car = new Car("LocalBrand", 2015);
         carListInterface.add(car,5);
         Car carFromArray = carListInterface.get(5);
         assertEquals("LocalBrand", carFromArray.getBrand());
@@ -46,13 +46,13 @@ class CarListInterfaceTest {
 
     @Test
     void addElementWithIncorrectIndexThenThrowException(){
-        Car car = new Car("LocalBrand", 100);
+        Car car = new Car("LocalBrand", 2015);
         assertThrows(IndexOutOfBoundsException.class, () -> carListInterface.add(car,20));
     }
 
     @Test
     void addElementIntoFirstPosition(){
-        Car car = new Car("LocalBrand", 100);
+        Car car = new Car("LocalBrand", 2015);
         carListInterface.addFirst(car);
         Car carFromArray = carListInterface.get(0);
         assertEquals("LocalBrand", carFromArray.getBrand());
@@ -60,7 +60,7 @@ class CarListInterfaceTest {
 
     @Test
     void addElementIntoLastPosition(){
-        Car car = new Car("LocalBrand", 100);
+        Car car = new Car("LocalBrand", 2015);
         carListInterface.addLast(car);
         Car carFromArray = carListInterface.get(9);
         assertEquals("LocalBrand", carFromArray.getBrand());
@@ -68,7 +68,7 @@ class CarListInterfaceTest {
 
     @Test
     void removeByElementTrue(){
-        Car car = new Car("LocalBrand", 100);
+        Car car = new Car("LocalBrand", 2015);
         carListInterface.add(car);
         assertEquals(11, carListInterface.size());
         assertTrue(carListInterface.remove(car));
@@ -77,7 +77,7 @@ class CarListInterfaceTest {
 
     @Test
     void removeByElementFalse(){
-        Car car = new Car("LocalBrand", 0);
+        Car car = new Car("LocalBrand", 2015);
         assertFalse(carListInterface.remove(car));
         assertEquals(10, carListInterface.size());
     }

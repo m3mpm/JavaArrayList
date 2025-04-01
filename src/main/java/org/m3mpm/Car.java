@@ -2,26 +2,26 @@ package org.m3mpm;
 
 public class Car {
     private final String brand;
-    private final int number;
+    private final int year;
 
-    public Car(String brand, int number) {
+    public Car(String brand, int year) {
         this.brand = brand;
-        this.number = number;
+        this.year = year;
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public int getNumber() {
-        return number;
+    public int getYear() {
+        return year;
     }
 
     @Override
     public String toString() {
         return "Car{" +
                 "brand='" + brand + '\'' +
-                ", number=" + number +
+                ", number=" + year +
                 '}';
     }
 }
