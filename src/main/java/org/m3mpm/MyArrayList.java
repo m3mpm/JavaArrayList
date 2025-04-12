@@ -2,9 +2,9 @@ package org.m3mpm;
 
 import java.util.Arrays;
 
-public class MyArrayList implements JavaList {
+public class MyArrayList<E> implements JavaList<E> {
 
-    private Cat[] array = new Cat[10];
+    private Object[] array = new Object[10];
     private int size = 0;
 
     private void checkIndex(int index) {
@@ -20,43 +20,43 @@ public class MyArrayList implements JavaList {
     }
 
     @Override
-    public Cat get(int index) {
+    public E get(int index) {
         checkIndex(index);
-        return array[index];
+        return (E)array[index];
     }
 
     @Override
-    public void add(Cat cat) {
+    public void add(E element) {
         increasArray();
-        array[size] = cat;
+        array[size] = element;
         size += 1;
     }
 
     @Override
-    public void add(Cat cat, int index) {
+    public void add(E element, int index) {
         checkIndex(index);
         increasArray();
         for (int i = size; i > index; i--) {
             array[i] = array[i - 1];
         }
-        array[index] = cat;
+        array[index] = element;
         size += 1;
     }
 
     @Override
-    public void addFirst(Cat cat) {
-        add(cat, 0);
+    public void addFirst(E element) {
+        add(element, 0);
     }
 
     @Override
-    public void addLast(Cat cat) {
-        add(cat, size - 1);
+    public void addLast(E element) {
+        add(element, size - 1);
     }
 
     @Override
-    public boolean remove(Cat cat) {
+    public boolean remove(E element) {
         for (int i = 0; i < size; i++) {
-            if (array[i].equals(cat)) {
+            if (array[i].equals(element)) {
                 return remove(i);
             }
         }
@@ -80,7 +80,7 @@ public class MyArrayList implements JavaList {
 
     @Override
     public void clear() {
-        array = new Cat[10];
+        array = new Object[10];
         size = 0;
     }
 }

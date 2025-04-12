@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JavaListTest {
 
-    private JavaList javaList;
+    private JavaList<Cat> javaList;
 
     @BeforeEach
     void setUp() {
-        javaList = new MyArrayList();
+        javaList = new MyArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             javaList.add(new Cat("kitty" + i, 3));
